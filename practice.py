@@ -118,7 +118,30 @@ def get_sum_zero_pairs(numbers):
         [[-1, 1], [0, 0]]
     """
 
-    return []
+    values_summed_to_zero = {}
+    zero_sum_pairs = []
+
+    numbers = sorted(numbers)
+
+    for num in numbers:
+        # if it's reversed number is in the list, and if the number
+        # doesn't already exist as a key or value, insert the number
+        # as both a key and it's opposite as a value.
+
+        # Special case for zero.
+        if num == 0:
+            values_summed_to_zero[num] = num
+        elif -num in numbers:
+            if num in values_summed_to_zero.keys() or -num in values_summed_to_zero.keys():
+                pass
+            else:
+                values_summed_to_zero[num] = -num
+
+    for pairs in values_summed_to_zero.items():
+        key, value = pairs
+        zero_sum_pairs.append([key, value])
+
+    return zero_sum_pairs
 
 
 def top_chars(phrase):
@@ -146,7 +169,22 @@ def top_chars(phrase):
 
     """
 
-    return []
+    letter_count = {}
+    letter_with_highest_count = []
+    top_characters = []
+
+    phrase = phrase.replace(' ', '')
+
+    for letter in phrase:
+        letter_count[letter] = letter_count.get(letter, 0) + 1
+
+    highest_letter_count_number = sorted(letter_count.values())
+
+    for letter in letter_count:
+        if letter_count[letter] == highest_letter_count_number[-1]:
+            top_characters.append(letter)
+
+    return sorted(top_characters)
 
 #####################################################################
 # You can ignore everything below this.
