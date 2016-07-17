@@ -29,7 +29,14 @@ def count_words(phrase):
         {'Porcupine': 1, 'do.': 1, 'porcupine': 1, 'see,': 1}
     """
 
-    return {}
+    word_count = {}
+
+    phrase = phrase.split(" ")
+
+    for word in phrase:
+        word_count[word] = word_count.get(word, 0) + 1
+
+    return word_count
 
 
 def get_melon_price(melon_name):
@@ -52,7 +59,16 @@ def get_melon_price(melon_name):
         'No price found'
     """
 
-    return 0
+    melon_type_price = {'Watermelon' : 2.95, 
+                        'Cantelope' : 2.50, 
+                        'Musk' : 3.25,
+                        'Christmas' : 14.25, 
+                        }
+
+    if melon_name in melon_type_price:
+        return melon_type_price[melon_name]
+    else: 
+        return 'No price found'
 
 
 def word_length_sorted(words):
@@ -71,7 +87,18 @@ def word_length_sorted(words):
         [(1, ['a']), (2, ['an', 'ok']), (3, ['day']), (5, ['apple'])]
     """
 
-    return []
+    length_of_phrase_words = {}
+
+    for word in words:
+        word_length = len(word)
+        if word_length in length_of_phrase_words:
+            length_of_phrase_words[word_length].append(word)
+            length_of_phrase_words[word_length] = sorted(length_of_phrase_words[word_length])
+        else:
+            length_of_phrase_words[word_length] = [word]
+       
+
+    return length_of_phrase_words.items()
 
 
 def translate_to_pirate_talk(phrase):
@@ -113,7 +140,34 @@ def translate_to_pirate_talk(phrase):
         'me swabbie be not a man!'
     """
 
-    return ""
+    english_to_pirate = {'sir' : 'matey', 
+                        'hotel' : 'fleabag inn', 
+                        'student' : 'swabbie', 
+                        'man' : 'matey', 
+                        'professor' : 'foul blaggart', 
+                        'restaurant' : 'galley', 
+                        'your' : 'yer', 
+                        'excuse' : 'arr', 
+                        'students' : 'swabbies', 
+                        'are' : 'be', 
+                        'restroom' : 'head', 
+                        'my' : 'me', 
+                        'is' : 'be',
+                        }
+
+    sentence = ""
+
+    phrase = phrase.split(" ")
+
+    for word in phrase:
+        if word in english_to_pirate:
+            sentence = sentence + " " + english_to_pirate[word]
+        else:
+            sentence = sentence + " " + word
+
+    sentence = sentence.lstrip()
+
+    return sentence
 
 
 def kids_game(names):
@@ -153,6 +207,24 @@ def kids_game(names):
     a dictionary (with the super-fast lookup they provide) can help;
     good solutions here will definitely require a dictionary.
     """
+
+    # This dictionary should have the word as the key. Its values
+    # will be other words in the phrase whose first letter starts
+    # with the last letter of key.
+    names_to_next_word = {}
+
+    outputted_words = []
+
+    outputted_words = outputted_words.append(names[0])
+
+    last_letter = names[0][-1]
+    
+
+    for name in names:
+        
+
+
+
 
     return []
 
